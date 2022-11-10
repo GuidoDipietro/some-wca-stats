@@ -16,4 +16,5 @@ GROUP BY eventId
 
 SELECT wca_statistics_time_format(p.antiPR,p.eventId,'single') antiNR, p.eventId, p.name, p.personId
 FROM antiNRs a JOIN antiPRs p ON (a.antiNR = p.antiPR AND a.eventId = p.eventId)
+WHERE p.eventId != '333mbo'
 ORDER BY p.eventId
