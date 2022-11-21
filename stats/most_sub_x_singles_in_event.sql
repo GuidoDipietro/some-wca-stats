@@ -31,4 +31,5 @@ SELECT p.name, p.id, SUM(
 ) sub26s
 FROM Results r JOIN Persons p ON (r.personId = p.id)
 WHERE r.best > 0 AND r.best < 3000 AND r.eventId = ':eventId'
+GROUP BY p.name, p.id
 ORDER BY 3 DESC
