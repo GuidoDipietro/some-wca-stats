@@ -9,6 +9,6 @@ WITH ggg_singles AS (
 )
 
 SELECT DISTINCT eventId, name, best ggg_record
-FROM ggg_singles gs JOIN Persons p ON (gs.personId = p.id)
+FROM ggg_singles gs JOIN Persons p ON (gs.personId = p.wca_id)
 WHERE gs.best = (SELECT gr FROM ggg_records grs WHERE grs.eventId = gs.eventId)
 ORDER BY eventId
