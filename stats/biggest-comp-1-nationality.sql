@@ -1,17 +1,17 @@
 # Biggest comp with 1 nationality
 
-WITH NationalitiesAtComp AS (
-   SELECT COUNT(DISTINCT countryId) nationalities, competitionId
-   FROM Results
-   GROUP BY competitionId
+WITH nationalities_at_comp AS (
+   SELECT COUNT(DISTINCT country_id) nationalities, competition_id
+   FROM results
+   GROUP BY competition_id
 ),
-CompetitorsAtComp AS (
-   SELECT COUNT(DISTINCT personId) persons, competitionId
-   FROM Results
-   GROUP BY competitionId
+competitors_at_comp AS (
+   SELECT COUNT(DISTINCT person_id) persons, competition_id
+   FROM results
+   GROUP BY competition_id
 )
 
-SELECT n.competitionId, nationalities, persons
-FROM NationalitiesAtComp n JOIN CompetitorsAtComp c ON (n.competitionId = c.competitionId)
+SELECT n.competition_id, nationalities, persons
+FROM nationalities_at_comp n JOIN competitors_at_comp c ON (n.competition_id = c.competition_id)
 WHERE nationalities = 1
 ORDER BY persons DESC

@@ -1,7 +1,5 @@
-# Numbers of years competed at
-SELECT personId, personName, COUNT(DISTINCT c.year) vejez
-FROM Results r JOIN Competitions c ON (r.competitionId = c.id)
-     JOIN Persons p ON (r.personId = p.id)
-WHERE p.countryId='Argentina'
-GROUP BY personId, personName
-ORDER BY COUNT(DISTINCT year) DESC
+SELECT p.wca_id, p.name, COUNT(DISTINCT RIGHT(r.competition_id, 4)) years
+FROM results r JOIN persons p ON (r.person_id = p.wca_id)
+AND p.country_id = ':country'
+GROUP BY p.wca_id, p.name
+ORDER BY 3 DESC

@@ -2,19 +2,19 @@
 
 WITH Data as 
 (SELECT DISTINCT
-     r.personId,
-     r.personName,
-     r.competitionId,
-     c.cityName,
-     IF(c.cityName LIKE '%Buenos Aires, Buenos Aires%', ' CABA', SUBSTRING_INDEX(SUBSTRING_INDEX(c.cityName, ',', 2), ',', -1)) province,
-     c.countryId compCountry
-FROM Results r
-     JOIN Persons p ON (r.personId = p.wca_id)
-     JOIN Competitions c ON (r.competitionId = c.id)
-WHERE c.countryId = 'Argentina'
-ORDER BY personName)
+     r.person_id,
+     r.person_name,
+     r.competition_id,
+     c.city_name,
+     IF(c.city_name LIKE '%Buenos Aires, Buenos Aires%', ' CABA', SUBSTRING_INDEX(SUBSTRING_INDEX(c.city_name, ',', 2), ',', -1)) province,
+     c.country_id comp_country
+FROM results r
+     JOIN persons p ON (r.person_id = p.wca_id)
+     JOIN competitions c ON (r.competition_id = c.id)
+WHERE c.country_id = 'Argentina'
+ORDER BY person_name)
 
-SELECT personName, COUNT(DISTINCT province) regiones, GROUP_CONCAT(DISTINCT province SEPARATOR ',') lista
+SELECT person_name, COUNT(DISTINCT province) regions, GROUP_CONCAT(DISTINCT province SEPARATOR ',') list
 FROM Data
-GROUP BY personName
+GROUP BY person_name
 ORDER BY 2 DESC

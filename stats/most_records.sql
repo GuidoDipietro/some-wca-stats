@@ -1,12 +1,12 @@
-# Most NRs/SARs/both
+# Most NRs/SARs/WRs/all
 
 SELECT
-    personId, personName,
-    SUM(IF(regionalSingleRecord='NR', 1, 0)+IF(regionalAverageRecord='NR', 1, 0)) NRs,
-    SUM(IF(regionalSingleRecord='SAR', 1, 0)+IF(regionalAverageRecord='SAR', 1, 0)) SARs,
-    SUM(IF(regionalSingleRecord='WR', 1, 0)+IF(regionalAverageRecord='WR', 1, 0)) WRs,
-    SUM(IF(regionalSingleRecord IN ('NR','SAR','WR'), 1, 0)+IF(regionalAverageRecord IN ('NR','SAR','WR'), 1, 0)) 'all'
-FROM Results r JOIN Persons p ON (r.personId = p.id)
-WHERE p.countryId='Argentina'
-GROUP BY personId, personName
-ORDER BY 3 DESC
+    person_id, person_name,
+    SUM(IF(regional_single_record='NR', 1, 0)+IF(regional_average_record='NR', 1, 0)) NRs,
+    SUM(IF(regional_single_record='SAR', 1, 0)+IF(regional_average_record='SAR', 1, 0)) SARs,
+    SUM(IF(regional_single_record='WR', 1, 0)+IF(regional_average_record='WR', 1, 0)) WRs,
+    SUM(IF(regional_single_record IN ('NR','SAR','WR'), 1, 0)+IF(regional_average_record IN ('NR','SAR','WR'), 1, 0)) 'all'
+FROM results r JOIN persons p ON (r.person_id = p.wca_id)
+WHERE p.country_id=':country'
+GROUP BY person_id, person_name
+ORDER BY 6 DESC

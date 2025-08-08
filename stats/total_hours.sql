@@ -5,7 +5,7 @@ WITH fmc_attempts AS (
       IF(value3>0, 1, 0)
    ) attempts
    FROM results r JOIN persons p ON (r.person_id = p.wca_id) JOIN competitions c ON (r.competition_id = c.id)
-   WHERE event_id = '333fm' AND p.country_id = ':country_id' AND RIGHT(c.id, 4) = :year
+   WHERE event_id = '333fm' AND p.country_id = ':country_id'
    GROUP BY person_id
 ),
 mbld_total_time AS (
@@ -15,7 +15,7 @@ mbld_total_time AS (
       IF(value3>0, CAST(SUBSTRING(value3, 3, 5) AS UNSIGNED), 0)
    ) total_time
    FROM results r JOIN persons p ON (r.person_id = p.wca_id) JOIN competitions c ON (r.competition_id = c.id)
-   WHERE event_id = '333mbf' AND p.country_id = ':country_id' AND RIGHT(c.id, 4) = :year
+   WHERE event_id = '333mbf' AND p.country_id = ':country_id'
    GROUP BY person_id
 )
 
@@ -30,6 +30,6 @@ FROM results r JOIN persons p ON (r.person_id = p.wca_id)
      JOIN competitions c ON (r.competition_id = c.id)
      LEFT JOIN fmc_attempts f ON (f.person_id = r.person_id)
      LEFT JOIN mbld_total_time m ON (m.person_id = r.person_id)
-WHERE p.country_id = ':country_id' AND event_id <> '333mbf' AND event_id <> '333fm' AND RIGHT(c.id, 4) = :year
+WHERE p.country_id = ':country_id' AND event_id <> '333mbf' AND event_id <> '333fm'
 GROUP BY r.person_id, p.name
 ORDER BY 3 DESC

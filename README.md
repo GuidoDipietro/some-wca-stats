@@ -1,6 +1,6 @@
 # WCA Statistics
 
-A collection of some random stats I've made on the [WCA Database export](https://www.worldcubeassociation.org/results/misc/export.html)
+A collection of some random stats I've made on the [WCA Database export](https://www.worldcubeassociation.org/export/results).
 
 # How to run
 

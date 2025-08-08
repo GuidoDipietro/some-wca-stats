@@ -1,13 +1,13 @@
-WITH Organizadores AS (
-SELECT COUNT(DISTINCT organizer_id) organizadores, p.countryId
+WITH organizers AS (
+SELECT COUNT(DISTINCT organizer_id) num_organizers, p.country_id
 FROM competition_organizers o JOIN users u ON (o.organizer_id = u.id)
-JOIN Persons p ON (u.wca_id = p.id) JOIN Competitions c ON (o.competition_id = c.id)
+JOIN persons p ON (u.wca_id = p.wca_id) JOIN competitions c ON (o.competition_id = c.id)
 WHERE cancelled_at IS NULL AND results_posted_at IS NOT NULL
-GROUP BY p.countryId
+GROUP BY p.country_id
 ),
-Totales AS (SELECT COUNT(DISTINCT id) totales, countryId FROM Persons GROUP BY countryId)
+everyone AS (SELECT COUNT(DISTINCT id) total_people, country_id FROM persons GROUP BY country_id)
 
-SELECT organizadores, totales, organizadores/totales ratio, o.countryId
-FROM Organizadores o JOIN Totales t ON (o.countryId = t.countryId)
-WHERE totales > 1000
+SELECT num_organizers, total_people, num_organizers/total_people ratio, o.country_id
+FROM organizers o JOIN everyone t ON (o.country_id = t.country_id)
+WHERE total_people > 1000
 ORDER BY ratio DESC

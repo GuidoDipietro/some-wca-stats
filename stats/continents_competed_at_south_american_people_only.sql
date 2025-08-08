@@ -1,9 +1,9 @@
-SELECT r.personId, r.personName, COUNT(DISTINCT c1.continentId) continentes, GROUP_CONCAT(DISTINCT c1.continentId SEPARATOR ', ') lista
-FROM Results r
-    JOIN Persons p ON (r.personId = p.wca_id)
-    JOIN Countries c ON (p.countryId = c.id)
-    JOIN Competitions co ON (r.competitionId = co.id)
-    JOIN Countries c1 ON (co.countryId = c1.id)
-WHERE c.continentId = '_South America' AND c1.continentId <> '_Multiple Continents'
-GROUP BY r.personId
+SELECT r.person_id, r.person_name, COUNT(DISTINCT c1.continent_id) continentes, GROUP_CONCAT(DISTINCT c1.continent_id SEPARATOR ', ') lista
+FROM results r
+    JOIN persons p ON (r.person_id = p.wca_id)
+    JOIN countries c ON (p.country_id = c.id)
+    JOIN competitions co ON (r.competition_id = co.id)
+    JOIN countries c1 ON (co.country_id = c1.id)
+WHERE c.continent_id = '_South America' AND c1.continent_id <> '_Multiple Continents'
+GROUP BY r.person_id
 ORDER BY 3 DESC
