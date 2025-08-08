@@ -1,9 +1,10 @@
 # World Cube Association – Results Database Export
 
-- Date: October 28, 2021
+- Encoding: UTF-8
+- Date: August  8, 2025
 - Export Format Version: 1.0.0
-- Contact: WCA Results Team (results@worldcubeassociation.org)
-- Website: https://www.worldcubeassociation.org/results
+- Contact: WCA Results Team (https://www.worldcubeassociation.org/contact?contactRecipient=wrt)
+- Website: https://www.worldcubeassociation.org/export/results
 
 ## Description
 
@@ -23,7 +24,7 @@ as users are clearly notified of the following:
 
 > This information is based on competition results owned and maintained by the
 > World Cube Assocation, published at https://worldcubeassociation.org/results
-> as of October 28, 2021.
+> as of August  8, 2025.
 
 ## Acknowledgements
 
@@ -42,10 +43,10 @@ https://www.worldcubeassociation.org/about
 
 The export contains a `metadata.json` file, with the following fields:
 
-| Field                   | Sample Value                  |
-| ----------------------- | ----------------------------- |
-| `export_date`           | `"2018-09-19T05:04:58+02:00"` |
-| `export_format_version` | `"1.0.0"`                     |
+| Field                   | Sample Value              |
+|-------------------------|---------------------------|
+| `export_date`           | `"2025-08-08T18:13:39+00:00"` |
+| `export_format_version` | `"1.0.0"` |
 
 If you regularly process this export, we recommend that you check the
 `export_format_version` value in your program and and review your code if the
@@ -62,14 +63,14 @@ You can use the `export_date` to detect if there is a new export, and the
 The database export consists of these tables:
 
 | Table                                   | Contents                                           |
-| --------------------------------------- | -------------------------------------------------- |
+|-----------------------------------------|----------------------------------------------------|
 | Persons                                 | WCA competitors                                    |
 | Competitions                            | WCA competitions                                   |
 | Events                                  | WCA events (3x3x3 Cube, Megaminx, etc)             |
 | Results                                 | WCA results per competition+event+round+person     |
 | RanksSingle                             | Best single result per competitor+event and ranks  |
 | RanksAverage                            | Best average result per competitor+event and ranks |
-| Rounds                                  | The round types (first, final, etc)                |
+| RoundTypes                              | The round types (first, final, etc)                |
 | Formats                                 | The round formats (best of 3, average of 5, etc)   |
 | Countries                               | Countries                                          |
 | Continents                              | Continents                                         |
@@ -84,7 +85,7 @@ Most of the tables should be self-explanatory, but here are a few specific detai
 `Countries` stores include those from the Wikipedia list of countries at
 http://en.wikipedia.org/wiki/List_of_countries, and may include some countries
 that no longer exist. The ISO2 column should reflect ISO 3166-1 alpha-2
-country codes, for countries that have them. Custom codes may used in some
+country codes, for countries that have them. Custom codes may be used in some
 circumstances.
 
 ### Scrambles

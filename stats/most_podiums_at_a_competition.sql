@@ -1,6 +1,6 @@
 # Most podiums at a competition
-SELECT personName, competitionId, COUNT(*) podios
-FROM Results r JOIN Persons p ON (r.personId = p.id)
-WHERE p.countryId = 'Argentina' AND roundTypeId IN ('c','f') AND best > 0 AND pos <= 3
-GROUP BY personName, competitionId
+SELECT person_name, competition_id, COUNT(*) podios
+FROM results r JOIN persons p ON (r.person_id = p.wca_id)
+WHERE p.country_id = ':country' AND round_type_id IN ('c','f') AND best > 0 AND pos <= 3
+GROUP BY person_name, competition_id
 ORDER BY COUNT(*) DESC

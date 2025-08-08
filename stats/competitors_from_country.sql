@@ -1,4 +1,5 @@
-# Competitors at a country
+# Competitors from a country
+
 SELECT COUNT(DISTINCT id)
-FROM Persons
-WHERE countryId = 'Argentina'
+FROM persons
+WHERE country_id = ':country'

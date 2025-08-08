@@ -1,7 +1,7 @@
 # Days between first and last comp
-SELECT personId, personName, DATEDIFF(MAX(end_date), MIN(start_date)) "dias entre primer y ultimo torneo"
-FROM Results r JOIN Competitions c ON (r.competitionId = c.id)
-     JOIN Persons p ON (r.personId = p.id)
-WHERE p.countryId='Argentina'
-GROUP BY personId, personName
+SELECT person_id, person_name, DATEDIFF(MAX(end_date), MIN(start_date)) days, MAX(end_date) last_day, MIN(start_date) first_day
+FROM results r JOIN competitions c ON (r.competition_id = c.id)
+     JOIN persons p ON (r.person_id = p.wca_id)
+WHERE p.country_id=':country'
+GROUP BY person_id, person_name
 ORDER BY DATEDIFF(MAX(end_date),MIN(start_date)) DESC
